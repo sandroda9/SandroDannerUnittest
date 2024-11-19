@@ -24,6 +24,7 @@ public class FacebookTest {
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
     js = (JavascriptExecutor) driver;
   }
+  
   @Test
   public void testWrongLogin() throws Exception {
     driver.get("https://www.facebook.com/");

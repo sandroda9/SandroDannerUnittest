@@ -105,9 +105,16 @@ public class CRUDSeleniumTest {
         driver.get(baseUrl);
         pause(3000);
 
+        // Alle Zeilen in der Tabelle holen
         List<WebElement> rows = driver.findElements(By.xpath("//table/tbody/tr"));
+        
+        // Prüfen, ob die Tabelle mindestens eine Zeile enthält
+        assertTrue("Die Tabelle enthält keine Einträge!", rows.size() > 0);
 
         System.out.println("Verifying all records in the table:");
+
+        boolean recordFound = false; // Flag, um festzustellen, ob eine bestimmte Bedingung erfüllt ist
+
         for (WebElement row : rows) {
             String name = row.findElement(By.xpath("./td[1]")).getText();
             String email = row.findElement(By.xpath("./td[2]")).getText();
@@ -115,10 +122,19 @@ public class CRUDSeleniumTest {
             String gender = row.findElement(By.xpath("./td[4]")).getText();
 
             System.out.println("Name: " + name + ", Email: " + email + ", Age: " + age + ", Gender: " + gender);
+
+            // Beispiel: Prüfen, ob ein bestimmter Benutzer vorhanden ist
+            if (name.equalsIgnoreCase("Sandro Danner") && email.equalsIgnoreCase("sandro.danner@tst.ch")) {
+                recordFound = true; // Flag setzen, wenn der Datensatz gefunden wird
+            }
         }
+
+        // Sicherstellen, dass der gewünschte Benutzer gefunden wurde
+        assertTrue("Der gewünschte Datensatz wurde nicht in der Tabelle gefunden!", recordFound);
 
         System.out.println("All records in the table were successfully verified.");
     }
+
 
     @Test
     public void test6_DeleteRecord() throws Exception {

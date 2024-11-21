@@ -1,6 +1,4 @@
-CRUD Functional Test
-
-CRUD Selenium Test:  
+CRUD Functional Selenium Test:
 
 The Testfile is located in src/test/java/com.mayab.quality.functional/CRUDSeleniumTest.java
 
